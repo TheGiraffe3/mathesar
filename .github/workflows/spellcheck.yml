@@ -7,13 +7,18 @@ jobs:
     name: Spelling
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           show-progress: true
-      - uses: pawamoy/mkdocs-spellcheck@v1.1.0
+      - name: Install Dependencies
+        run: |
+          python -m pip install 'mkdocs-spellcheck[symspellpy]'
+      - name: Check Spelling
+        uses: pawamoy/mkdocs-spellcheck@v1.1.0
         with:
-          backends:  # the backends you want to use
-          - symspellpy  # as strings
+          #backends:  # the backends you want to use
+          symspellpy: 1  # as strings
           # known_words can also be a list of words
           #known_words: [known words]
           # ignore words in <code> tags
