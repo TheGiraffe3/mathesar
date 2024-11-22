@@ -1,20 +1,34 @@
-# name: Spellcheck
+name: Spellcheck
 
-# on: [push, pull_request]
+on: [push, pull_request]
 
-# concurrency:
-#  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
-#  cancel-in-progress: true
-
-# jobs:
-#  spellcheck:
-#    name: Spelling
-#    runs-on: ubuntu-latest
-#    steps:
-#    - uses: actions/checkout@v4
-#      with:
-#        ref: ${{ github.event.pull_request.head.sha }}
-#        show-progress: false
-#    - uses: codespell-project/actions-codespell@master
-#      with:
-#        path: docs/
+jobs:
+  spellcheck:
+    name: Spelling
+    runs-on: ubuntu-latest
+    steps:
+      uses: actions/checkout@v4
+        with:
+          show-progress: true
+      uses: pawamoy/mkdocs-spellcheck@v1.1.0
+        with:
+          plugins:
+          - search
+          - spellcheck:
+              backends:  # the backends you want to use
+              - symspellpy  # as strings
+              # known_words can also be a list of words
+              #known_words: [known words]
+              # ignore words in <code> tags
+              ignore_code: yes
+              # minimum length of words to consider
+              min_length: 2
+              # maximum number of capital letters in a word
+              max_capital: 1
+              # keep unicode characters
+              allow_unicode: no
+              # skip files entirely (supports Unix shell-style wildcards)
+              #skip_files:
+              #- file.md
+              # whether to only check in strict mode
+              strict_only: yes
