@@ -32,5 +32,5 @@ jobs:
           # skip files entirely (supports Unix shell-style wildcards)
           #skip_files:
           #- file.md
-          # whether to only check in strict mode
+          # Whether to only check in strict mode.
           strict_only: yes
