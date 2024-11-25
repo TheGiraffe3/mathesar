@@ -7,7 +7,7 @@ jobs:
     name: Spelling
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout mathesar
         uses: actions/checkout@v4
         with:
           show-progress: true
@@ -29,7 +29,7 @@ jobs:
           max_capital: 1
           # keep unicode characters
           allow_unicode: no
-          # skip files entirely (supports Unix shell-style wildcards)
+          # skip files entirely (supports Unix shell-style wildcards such as *)
           #skip_files:
           #- file.md
           # Whether to only check in strict mode.
